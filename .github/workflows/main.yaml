@@ -1,0 +1,20 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Build Docker image
+      run: |
+        docker build -t ghcr.io/madhavkrishna118/my-docker-repo:latest .
+        docker login ghcr.io -u madhavkrishna118@gmail.com -p 9010438019
+        docker push ghcr.io/madhavkrishna118/my-docker-repo:latest
